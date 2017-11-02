@@ -1,0 +1,29 @@
+pipelines:
+  branches:
+    master:
+      - step:
+          script:
+            - echo "Runing pip-lee-nes for ARGUS"
+            - echo "Deploy to live"
+            - export AWS_ACCESS_KEY_ID=$LIVE_AWS_ACCESS_KEY_ID
+            - export AWS_SECRET_ACCESS_KEY=$LIVE_AWS_SECRET_ACCESS_KEY
+            - export AWS_DEFAULT_REGION=$LIVE_AWS_REGION
+            - node -v
+            - npm --version
+            - npm run config $LIVE_BUCKET_NAME $LIVE_AWS_REGION
+            - npm run setup
+            - "aws sns publish --topic-arn arn:aws:sns:$LIVe_REGION:$LIVE_AWS_ACCOUNT_ID:new_release --subject \"$BITBUCKET_REPO_SLUG\" --message \"{\"Commit\": $BITBUCKET_COMMIT, \"Branch\": $BITBUCKET_BRANCH, \"Date\": $(date +"%m-%d-%y"), \"Time\": $(date +"%T")}\"
+
+    develop:
+      - step:
+          script:
+            - echo "Runing pip-lee-nes for ARGUS"
+            - echo "Deploy to staging"
+            - export AWS_ACCESS_KEY_ID=$STAGING_AWS_ACCESS_KEY_ID
+            - export AWS_SECRET_ACCESS_KEY=$STAGING_AWS_SECRET_ACCESS_KEY
+            - export AWS_DEFAULT_REGION=$DEFAULT_REGION
+            - node -v
+            - npm --version
+            - npm run config $STAGING_BUCKET_NAME $DEFAULT_REGION
+            - npm run setup
+            - "aws sns publish --topic-arn arn:aws:sns:$DEFAULT_REGION:$STAGING_AWS_ACCOUNT_ID:new_release --subject \"$BITBUCKET_REPO_SLUG\" --message \"{\"Commit\": $BITBUCKET_COMMIT, \"Branch\": $BITBUCKET_BRANCH, \"Date\": $(date +"%m-%d-%y"), \"Time\": "$(date +"%T")}\"

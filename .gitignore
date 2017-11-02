@@ -1,0 +1,5 @@
+.idea
+travis_lint-*.gem
+
+# For gem development, don't commit the gemfile lock.
+Gemfile.lock

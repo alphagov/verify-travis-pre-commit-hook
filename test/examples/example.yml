@@ -1,0 +1,23 @@
+env:
+  global:
+  - PATH=$HOME/.local/bin:$PATH
+  - secure: XXX
+  - secure: YYY
+  - secure: ZZZ
+before_install:
+- pip install --user awscli
+- aws s3api get-object --bucket $THEBUCKET --key test.file test.file
+- cat test.file
+language: java
+jdk:
+- oraclejdk8
+deploy:
+  provider: s3
+  skip_cleanup: true
+  region: eu-west-2
+  access_key_id:
+    secure: AAA
+  secret_access_key:
+    secure: BBB
+  bucket:
+    secure: CCC

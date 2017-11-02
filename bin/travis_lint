@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'travis_lint'
+
+ARGV.each do | filename |
+  if !TravisLint.validate(filename)
+    exit 1
+  end
+end

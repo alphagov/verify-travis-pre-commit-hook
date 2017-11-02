@@ -1,0 +1,6 @@
+-   id: travis-yml-lint
+    name: Travislint Travis Yaml
+    description: This hook lints travis.yml files.
+    entry: travis_lint
+    language: ruby
+    files: \.travis\.y(a?)ml
