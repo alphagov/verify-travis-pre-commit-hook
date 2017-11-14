@@ -21,4 +21,9 @@ class TravisLintTest < Minitest::Test
   def test_bad_yml_is_invalid
     assert_equal false, TravisLint.validate('./test/examples/not.yml')
   end
+
+  def test_jobs_is_valid
+    skip "The travis-yaml gem doesn't recognise the jobs element yet: https://github.com/travis-ci/travis-yaml/issues/120"
+    assert_equal true, TravisLint.validate('./test/examples/jobs.yml')
+  end
 end
