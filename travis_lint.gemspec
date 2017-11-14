@@ -11,10 +11,8 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.metadata    = { 'source_code_uri' => 'https://github.com/alphagov/verify-travis-pre-commit-hook' }
 
-  # This library is technically deprecated (see https://github.com/travis-ci/travis-yaml),
-  # But the replacement https://github.com/travis-ci/travis-yml is not yet published.
-  # Please update this gem to use travis-yml when you can.
-  s.add_dependency 'travis-yaml'
+  # Please add the travis-yml dependency once it is published to rubygems.
+  # s.add_dependency 'travis-yml'
 
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'
