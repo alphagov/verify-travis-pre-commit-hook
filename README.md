@@ -1,5 +1,7 @@
 # verify-travis-pre-commit-hook
 
+[![Build Status](https://travis-ci.org/alphagov/verify-travis-pre-commit-hook.svg?branch=master)](https://travis-ci.org/alphagov/verify-travis-pre-commit-hook)
+
 A [pre-commit](http://pre-commit.com/) hook in the form of a rubygem. Not published to rubgems.org.
 
 Looks for a Travis yaml file and lints it, to protect against yaml errors or bad Travis configuration.
